@@ -18,6 +18,24 @@ int checkXMLVersion(FILE* f){
 
 }
 
+void lireContenuElementXML(FILE* xml){
+    char* buffer = malloc(sizeof(char)*TAILLE_MAX);
+    char c = fgetc(xml);
+    int i = 0 ;
+    while (c != '<'){
+        buffer[i] = c ;
+        c = fgetc(xml);
+        if (i == TAILLE_MAX){
+            printf("ERREUR : '<' NON PRESENT OU NOM D'ELEMENT TROP GRAND\n");
+            exit(1);
+        }
+        i++;
+    }
+    buffer[i]='\0' ;
+    printf("L'ELEMENT CONTIENT %s\n", buffer);
+    free(buffer);
+}
+
 void lireElementDansXML(FILE* xml, int nbElementDTD, char** tabNameElement, char** tabAttributElement, int profondeur){
     sauterLigne(xml);
     enleverEspaces(xml);
