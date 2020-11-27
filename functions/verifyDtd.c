@@ -64,3 +64,22 @@ char* getNomDTD(FILE* f){
     }
     return buffer ;
 }
+
+int finDeDTD(FILE* f) {
+    char c = fgetc(f);
+    if (c == ']') {
+        c = fgetc(f);
+        if (c == '>') {
+            printf("FIN DE DTD\n\n");
+            return 0;
+        } else {
+            printf("ERREUR : CARACTERE INNATENDU");
+            exit(1);
+            return 0;
+        }
+    } else {
+        fseek(f, -1, SEEK_CUR);
+        return 1;
+    }
+}
+

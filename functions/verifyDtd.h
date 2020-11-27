@@ -4,3 +4,4 @@ void sauterLigne(FILE* f);
 int checkFinElementDTD(int indexElement, char** tabAttributElement);
 char* lectureFinElementDTD(FILE* xml);
 char* getNomDTD(FILE* f);
+int finDeDTD(FILE* f);
