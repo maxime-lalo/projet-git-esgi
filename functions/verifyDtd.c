@@ -21,3 +21,19 @@ int checkFinElementDTD(int indexElement, char** tabAttributElement){
         return 0 ;
     }
 }
+
+char* lectureFinElementDTD(FILE* xml){
+    char* buffer = malloc(sizeof(char)*TAILLE_MAX);
+    char c = fgetc(xml);
+    int i = 0 ;
+    while (c != '>'){
+        buffer[i] = c ;
+        c = fgetc(xml);
+        if (i == TAILLE_MAX){
+            printf("ERREUR : '>' NON PRESENT OU NOM D'ELEMENT TROP GRAND\n");
+            exit(1);
+        }
+        i++;
+    }
+    return buffer ;
+}
