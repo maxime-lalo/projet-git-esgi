@@ -10,3 +10,4 @@ int checkElementInDTD(int nbElementDTD, char** tabNameElement, char* buffer, int
 int verifierDoctype(FILE* f);
 void getElement(int i, char** tabNameElement, char** tabAttributElement, FILE* f);
 void enleverEspaces(FILE* f);
+int detectionElement (FILE* f);

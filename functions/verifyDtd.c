@@ -168,11 +168,27 @@ void getElement(int i, char** tabNameElement, char** tabAttributElement, FILE* f
 
 }
 
-void enleverEspaces(FILE* f) {
-    char c = fgetc(f);
-    while (c == 9 || c == ' ') {
-        c = fgetc(f);
+void enleverEspaces(FILE* f){
+    char c = fgetc(f) ;
+    while (c == 9 || c == ' '){
+        c = fgetc(f) ;
     }
-    fseek(f, -1, SEEK_CUR);
+    fseek(f, -1, SEEK_CUR) ;
+}
+
+int detectionElement (FILE* f){
+    char* buffer = malloc(sizeof(char)*TAILLE_MAX);
+    enleverEspaces(f);
+    fgets(buffer, 11, f) ;
+    if (strcmp("<!ELEMENT ", buffer)==0){
+        printf("DETECTION D'UN ELEMENT\n") ;
+        free(buffer) ;
+        return 1 ;
+    } else {
+        free(buffer) ;
+        printf("ELEMENT INCORRECT\n") ;
+        return 0 ;
+    }
+
 }
 
