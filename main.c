@@ -12,5 +12,10 @@ int main(){
 
     int nbElementDTD = lireDTD(nomFichierDTD, tabNameElement, tabAttributElement);
 
+    //XML
+    char* nomFichierXML = "fichierxml.xml" ;
+
+    lireXML(nomFichierXML, tabNameElement, tabAttributElement, nbElementDTD);
+
     return 0 ;
 }
