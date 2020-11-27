@@ -27,6 +27,19 @@ char* getElementXML(FILE* xml){
     return buffer ;
 }
 
+int checkFinElementXML(FILE* xml, int nbElementDTD, char** tabNameElement){
+    char c = fgetc(xml);
+    if (c == '/'){
+        char* buffer = lectureFinElementDTD(xml);
+        checkElementInDTD(nbElementDTD,tabNameElement, buffer, 1);
+        free(buffer);
+        return 1 ;
+    } else {
+        fseek(xml, -1, SEEK_CUR);
+        return 0 ;
+    }
+}
+
 void lireContenuElementXML(FILE* xml){
     char* buffer = malloc(sizeof(char)*TAILLE_MAX);
     char c = fgetc(xml);
