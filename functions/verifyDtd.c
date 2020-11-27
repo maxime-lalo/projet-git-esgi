@@ -37,3 +37,30 @@ char* lectureFinElementDTD(FILE* xml){
     }
     return buffer ;
 }
+
+char* getNomDTD(FILE* f){
+    char* buffer = malloc(sizeof(char)*TAILLE_MAX);
+    int i = 0 ;
+    char c = fgetc(f) ;
+    int save = 0 ;
+    while (c != '['){
+        if (i == TAILLE_MAX){
+            printf("NOM TROP LONG OU CARACTERE '[' NON PRESENT");
+            exit(1) ;
+        }
+        if(c == ' '){
+            save ++ ;
+            if (save > 1 ){
+                printf("ERREUR : TROP D'ESPACES DANS LE NOM") ;
+                exit(1);
+            }
+        }
+        if (save < 1){
+            buffer[i] = c ;
+        }
+
+        c = fgetc(f) ;
+        i++ ;
+    }
+    return buffer ;
+}
