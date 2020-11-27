@@ -17,3 +17,34 @@ int checkXMLVersion(FILE* f){
     }
 
 }
+
+void lireElementDansXML(FILE* xml, int nbElementDTD, char** tabNameElement, char** tabAttributElement, int profondeur){
+    sauterLigne(xml);
+    enleverEspaces(xml);
+    if (fgetc(xml) == '<'){
+        if (checkFinElementXML(xml, nbElementDTD, tabNameElement) == 1 && profondeur == 0){
+            return ;
+        }
+        char* nomElement = getElementXML(xml);
+
+        int indexElement = checkElementInDTD(nbElementDTD, tabNameElement, nomElement, 0);
+
+        if(strcmp(tabAttributElement[indexElement], "#PCDATA" ) == 0){
+            lireContenuElementXML(xml);
+            if (checkFinElementXML(xml, nbElementDTD, tabNameElement)==1){
+                //printf("FIN D'ELEMENT\n");
+                lireElementDansXML(xml, nbElementDTD,tabNameElement, tabAttributElement, profondeur--);
+            } else {
+                printf("ERREUR DE FIN D'ELEMENT\n");
+                exit(1);
+            }
+
+        } else {
+            int n = checkFinElementDTD(indexElement, tabAttributElement);
+            if (n == 1){
+                free(nomElement);
+                lireElementDansXML(xml, nbElementDTD,tabNameElement, tabAttributElement, profondeur++);
+            }
+        }
+    }
+}
