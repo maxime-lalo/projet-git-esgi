@@ -88,3 +88,13 @@ void lireElementDansXML(FILE* xml, int nbElementDTD, char** tabNameElement, char
         }
     }
 }
+
+void lireXML(char* nomFichierXML, char** tabNameElement, char** tabAttributElement, int nbElementDTD){
+    FILE* xml = fopen(nomFichierXML, "r+");
+    if (xml == NULL ){
+        exit(1);
+    }
+    if (checkXMLVersion(xml) == 1){
+        lireElementDansXML(xml, nbElementDTD, tabNameElement, tabAttributElement, 0);
+    }
+}
