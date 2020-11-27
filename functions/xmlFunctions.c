@@ -18,6 +18,15 @@ int checkXMLVersion(FILE* f){
 
 }
 
+char* getElementXML(FILE* xml){
+    char* buffer = lectureFinElementDTD(xml);
+    if (strcmp(buffer, "")==0){
+        printf("ERREUR DANS DECLARATION D'ELEMENT\n");
+        exit(1);
+    }
+    return buffer ;
+}
+
 void lireContenuElementXML(FILE* xml){
     char* buffer = malloc(sizeof(char)*TAILLE_MAX);
     char c = fgetc(xml);
