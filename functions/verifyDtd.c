@@ -14,3 +14,10 @@ void sauterLigne(FILE* f){
     } while (c != '\n') ;
 }
 
+int checkFinElementDTD(int indexElement, char** tabAttributElement){
+    if( tabAttributElement[indexElement][strlen(tabAttributElement[indexElement])-1] == '+') {
+        return 1 ;
+    } else {
+        return 0 ;
+    }
+}
