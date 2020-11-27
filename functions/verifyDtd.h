@@ -11,3 +11,4 @@ int verifierDoctype(FILE* f);
 void getElement(int i, char** tabNameElement, char** tabAttributElement, FILE* f);
 void enleverEspaces(FILE* f);
 int detectionElement (FILE* f);
+void getNameElement(int i, char** tabNameElement, FILE* f);

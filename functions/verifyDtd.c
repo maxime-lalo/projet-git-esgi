@@ -192,3 +192,26 @@ int detectionElement (FILE* f){
 
 }
 
+void getNameElement(int i, char** tabNameElement, FILE* f){
+    int j = 0 ;
+    char c = fgetc(f);
+    char* buffer = malloc(sizeof(char)*TAILLE_MAX);
+    if (c == ' '){
+        printf("ERREUR : TROP D'ESPACES AVANT LE NOM DE L'ELEMENT");
+        exit(1);
+    }
+    while (c != ' '){
+        if (j < TAILLE_MAX){
+            buffer[j] = c ;
+            c = fgetc(f);
+            j++ ;
+        } else {
+            printf("ERREUR : NOM ELEMENT TROP LONG");
+            exit(1);
+        }
+    }
+    tabNameElement[i] = buffer ;
+    printf("L'élément (%d) est : %s \n", i, tabNameElement[i]);
+
+}
+
