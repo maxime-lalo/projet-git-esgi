@@ -1,1 +1,3 @@
-# tp_git_2020
+# projet-git-esgi
+Projet final du cours de git année 2020
+Maxime Lalo
