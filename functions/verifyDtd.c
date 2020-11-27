@@ -238,3 +238,12 @@ void getAttributElement (int i, char** tabAttributElement, FILE* f){
 
 }
 
+int checkParenthese(FILE* f){
+    char c = fgetc(f);
+    if (c == '('){
+        return 1 ;
+    } else {
+        return 0 ;
+    }
+}
+

@@ -13,3 +13,4 @@ void enleverEspaces(FILE* f);
 int detectionElement (FILE* f);
 void getNameElement(int i, char** tabNameElement, FILE* f);
 void getAttributElement (int i, char** tabAttributElement, FILE* f);
+int checkParenthese(FILE* f);
