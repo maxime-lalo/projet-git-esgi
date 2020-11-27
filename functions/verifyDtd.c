@@ -168,3 +168,11 @@ void getElement(int i, char** tabNameElement, char** tabAttributElement, FILE* f
 
 }
 
+void enleverEspaces(FILE* f) {
+    char c = fgetc(f);
+    while (c == 9 || c == ' ') {
+        c = fgetc(f);
+    }
+    fseek(f, -1, SEEK_CUR);
+}
+
