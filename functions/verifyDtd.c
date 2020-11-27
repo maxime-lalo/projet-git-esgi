@@ -129,3 +129,19 @@ int checkElementInDTD(int nbElementDTD, char** tabNameElement, char* buffer, int
     }
     return indexSave ;
 }
+
+int verifierDoctype(FILE* f){
+    enleverEspaces(f);
+    char* buffer = malloc(sizeof(char)*TAILLE_MAX);
+    fgets(buffer, 11, f);
+    if (strcmp("<!DOCTYPE ",buffer)==0){
+        printf("DOCTYPE CORRECT\n");
+        free(buffer);
+        return 0 ;
+    } else {
+        free(buffer);
+        printf("DOCTYPE INCORRECT\n");
+        return 1 ;
+    }
+
+}
