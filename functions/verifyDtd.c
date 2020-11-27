@@ -65,21 +65,45 @@ char* getNomDTD(FILE* f){
     return buffer ;
 }
 
-int finDeDTD(FILE* f) {
+int finDeDTD(FILE* f){
     char c = fgetc(f);
-    if (c == ']') {
+    if (c == ']'){
         c = fgetc(f);
-        if (c == '>') {
+        if (c == '>'){
             printf("FIN DE DTD\n\n");
-            return 0;
+            return 0 ;
         } else {
             printf("ERREUR : CARACTERE INNATENDU");
             exit(1);
-            return 0;
+            return 0 ;
         }
     } else {
-        fseek(f, -1, SEEK_CUR);
-        return 1;
+        fseek(f,-1,SEEK_CUR);
+        return 1 ;
     }
 }
 
+int lireDTD(char* nomFichierDTD, char** tabNameElement, char** tabAttributElement){
+    FILE* dtd = fopen(nomFichierDTD, "r+");
+    if (dtd == NULL ){
+        exit(1);
+    }
+
+    if(verifierDoctype(dtd)){
+        exit(1);
+    }
+    char* nomDTD = getNomDTD(dtd);
+    printf("Nom de la DTD : %s\n\n",nomDTD);
+
+    sauterLigne(dtd);
+
+    int i = 0 ;
+
+    while(finDeDTD(dtd) == 1 ){
+        getElement(i, tabNameElement, tabAttributElement, dtd) ;
+        i++ ;
+    }
+
+    fclose (dtd);
+    return i ;
+}
