@@ -8,3 +8,4 @@ int finDeDTD(FILE* f);
 int lireDTD(char* nomFichierDTD, char** tabNameElement, char** tabAttributElement);
 int checkElementInDTD(int nbElementDTD, char** tabNameElement, char* buffer, int n);
 int verifierDoctype(FILE* f);
+void getElement(int i, char** tabNameElement, char** tabAttributElement, FILE* f);

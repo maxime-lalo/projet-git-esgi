@@ -145,3 +145,26 @@ int verifierDoctype(FILE* f){
     }
 
 }
+
+void getElement(int i, char** tabNameElement, char** tabAttributElement, FILE* f){
+    if (detectionElement(f) == 1 ){
+        getNameElement(i,tabNameElement,f);
+        if (checkParenthese(f) == 1){
+            getAttributElement(i, tabAttributElement, f);
+            if (fgetc(f) == '>'){
+                sauterLigne(f);
+            } else {
+                printf("ERREUR DE FIN D'ELEMENT\n");
+                exit(1);
+            }
+        } else {
+            printf("ERREUR DE SYNTAXE DANS L'ELEMENT\n");
+            exit(1);
+        }
+
+    } else {
+        exit(1) ;
+    }
+
+}
+
