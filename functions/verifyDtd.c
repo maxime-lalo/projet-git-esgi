@@ -215,3 +215,26 @@ void getNameElement(int i, char** tabNameElement, FILE* f){
 
 }
 
+void getAttributElement (int i, char** tabAttributElement, FILE* f){
+    char* buffer = malloc(sizeof(char)*TAILLE_MAX);
+    int j = 0 ;
+    char c = fgetc(f);
+    while (c != ')'){
+        if (c == ' '){
+            printf("ERREUR DE SYNTAXE DANS L'ATTRIBUT DE L'ELEMENT");
+            exit(1);
+        }
+        if (j < TAILLE_MAX){
+            buffer[j] = c ;
+            c = fgetc(f);
+            j++ ;
+        } else {
+            printf("ERREUR : ATTRIBUT ELEMENT TROP LONG");
+            exit(1);
+        }
+    }
+    tabAttributElement[i] = buffer ;
+    printf("L'attribut associé est : %s \n\n", tabAttributElement[i] );
+
+}
+
