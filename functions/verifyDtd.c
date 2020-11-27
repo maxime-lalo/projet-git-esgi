@@ -107,3 +107,25 @@ int lireDTD(char* nomFichierDTD, char** tabNameElement, char** tabAttributElemen
     fclose (dtd);
     return i ;
 }
+
+int checkElementInDTD(int nbElementDTD, char** tabNameElement, char* buffer, int n){
+    //printf("   %s", buffer);
+    int indexSave = -1 ;
+    for(int j = 0 ; j < nbElementDTD ; j++){
+        if (strcmp(buffer, tabNameElement[j]) == 0){
+            if (n == 0){
+                printf("DETECTION DE L'ELEMENT %s\n", tabNameElement[j]);
+            } else {
+                printf("FIN DE L'ELEMENT %s\n\n", tabNameElement[j]);
+            }
+
+            indexSave = j ;
+            break ;
+        }
+    }
+    if (indexSave == -1 ){
+        printf("ERREUR : ELEMENT NON PRESENT DANS LA DTD\n");
+        exit(1);
+    }
+    return indexSave ;
+}
